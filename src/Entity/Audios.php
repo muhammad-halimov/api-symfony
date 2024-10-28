@@ -1,26 +1,17 @@
 <?php
 
 namespace App\Entity;
-
-//use ApiPlatform\Metadata\ApiResource;
-//use ApiPlatform\Metadata\Get;
-//use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Traits\UpdatedAtTrait;
 use App\Repository\AudiosRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-//use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AudiosRepository::class)]
-
-//#[Get(normalizationContext: ['groups' => ['audios:read']])]
-//#[GetCollection(normalizationContext: ['groups' => ['audios:read']])]
-
 #[ORM\HasLifecycleCallbacks]
-
 #[Vich\Uploadable]
 class Audios
 {
@@ -29,24 +20,24 @@ class Audios
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-//    #[Groups(['audios:read'])]
+    #[Groups(['participants:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-//    #[Groups(['audios:read'])]
+    #[Groups(['participants:read'])]
     private ?string $title = null;
 
     #[Vich\UploadableField(mapping: 'product_description_audios', fileNameProperty: 'audio')]
     #[Assert\File(mimeTypes: ['audio/mpeg', 'audio/wav', 'audio/mp3'])]
-//    #[Groups(['audios:read'])]
+    #[Groups(['participants:read'])]
     private ?File $audioFile = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-//    #[Groups(['audios:read'])]
+    #[Groups(['participants:read'])]
     private ?string $audio = null;
 
     #[ORM\ManyToOne(inversedBy: 'audios')]
-//    #[Groups(['audios:read'])]
+    #[Groups(['participants:read'])]
     private ?Participants $participants = null;
 
     public function getId(): ?int

@@ -2,26 +2,17 @@
 
 namespace App\Entity;
 
-//use ApiPlatform\Metadata\ApiResource;
-//use ApiPlatform\Metadata\Get;
-//use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Traits\UpdatedAtTrait;
 use App\Repository\VideosRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-
-//use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: VideosRepository::class)]
-
-//#[Get(normalizationContext: ['groups' => ['videos:read']])]
-//#[GetCollection(normalizationContext: ['groups' => ['videos:read']])]
-
 #[ORM\HasLifecycleCallbacks]
-
+#[ORM\Entity(repositoryClass: VideosRepository::class)]
 #[Vich\Uploadable]
 class Videos
 {
@@ -30,24 +21,24 @@ class Videos
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-//    #[Groups(['videos:read'])]
+    #[Groups(['participants:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-//    #[Groups(['videos:read'])]
+
     private ?string $title = null;
 
     #[Vich\UploadableField(mapping: 'product_description_videos', fileNameProperty: 'video')]
     #[Assert\File(mimeTypes: ['video/mp4', 'video/avi', 'video/mkv'])]
-//    #[Groups(['videos:read'])]
+    #[Groups(['participants:read'])]
     private ?File $videoFile = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-//    #[Groups(['videos:read'])]
+    #[Groups(['participants:read'])]
     private ?string $video = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos')]
-//    #[Groups(['videos:read'])]
+    #[Groups(['participants:read'])]
     private ?Participants $participants = null;
 
     public function getId(): ?int

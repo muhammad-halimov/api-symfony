@@ -17,6 +17,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Date;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\HasLifecycleCallbacks]
@@ -64,11 +65,11 @@ class Participants
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['participants:read'])]
-    private ?DateTimeInterface $birth = null;
+    private ?Date $birth = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['participants:read'])]
-    private ?DateTimeInterface $death = null;
+    private ?Date $death = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['participants:read'])]
@@ -78,24 +79,28 @@ class Participants
      * @var Collection<int, Poems>
      */
     #[ORM\OneToMany(targetEntity: Poems::class, mappedBy: 'participants', cascade: ['persist', 'remove'])]
+    #[Groups(['participants:read'])]
     private Collection $poems;
 
     /**
      * @var Collection<int, Photos>
      */
     #[ORM\OneToMany(targetEntity: Photos::class, mappedBy: 'participants', cascade: ['persist', 'remove'])]
+    #[Groups(['participants:read'])]
     private Collection $photos;
 
     /**
      * @var Collection<int, Audios>
      */
     #[ORM\OneToMany(targetEntity: Audios::class, mappedBy: 'participants', cascade: ['persist', 'remove'])]
+    #[Groups(['participants:read'])]
     private Collection $audios;
 
     /**
      * @var Collection<int, Videos>
      */
     #[ORM\OneToMany(targetEntity: Videos::class, mappedBy: 'participants', cascade: ['persist', 'remove'])]
+    #[Groups(['participants:read'])]
     private Collection $videos;
 
     public function __construct()

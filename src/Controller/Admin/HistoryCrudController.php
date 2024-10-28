@@ -44,13 +44,16 @@ class HistoryCrudController extends AbstractCrudController
                 'СВО' => 'firstType',
                 'Харьков' => 'secondType',
             ])
-            ->setColumns(8);
-
-        yield CollectionField::new('images', 'Фото')
-            ->useEntryCrudForm(PhotosCrudController::class);
+            ->setColumns(8)
+            ->setRequired(true);
 
         yield TextEditorField::new('bio', 'Описание')
-            ->setColumns(8);
+            ->setColumns(8)
+            ->setRequired(true);
+
+        yield CollectionField::new('images', 'Фото')
+            ->useEntryCrudForm(PhotosCrudController::class)
+            ->setRequired(true);
     }
 
     public function configureActions(Actions $actions): Actions

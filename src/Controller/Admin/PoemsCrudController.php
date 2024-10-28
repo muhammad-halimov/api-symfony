@@ -26,13 +26,13 @@ class PoemsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title')
+        yield TextField::new('title', 'Название')
             ->setColumns(8);
 
-        yield TextField::new('description')
+        yield TextField::new('description', 'Описание')
             ->setColumns(8);
 
-        yield TextEditorField::new('text')
+        yield TextEditorField::new('text', 'Текст')
             ->setColumns(8);
     }
 }

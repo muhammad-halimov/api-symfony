@@ -2,23 +2,17 @@
 
 namespace App\Entity;
 
-//use ApiPlatform\Metadata\Get;
-//use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Traits\UpdatedAtTrait;
 use App\Repository\PhotosRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-//use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: PhotosRepository::class)]
-
-//#[Get(normalizationContext: ['groups' => ['photos:read']])]
-//#[GetCollection(normalizationContext: ['groups' => ['photos:read']])]
 #[ORM\HasLifecycleCallbacks]
-
+#[ORM\Entity(repositoryClass: PhotosRepository::class)]
 #[Vich\Uploadable]
 class Photos
 {
@@ -27,24 +21,22 @@ class Photos
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-//    #[Groups(['photos:read'])]
+    #[Groups(['participants:read', 'history:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-//    #[Groups(['photos:read'])]
+    #[Groups(['participants:read', 'history:read'])]
     private ?string $title = null;
 
     #[Vich\UploadableField(mapping: 'product_description_images', fileNameProperty: 'image')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'])]
-//    #[Groups(['photos:read'])]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-//    #[Groups(['photos:read'])]
+    #[Groups(['participants:read', 'history:read'])]
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'photos')]
-//    #[Groups(['photos:read'])]
     private ?Participants $participants = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]

@@ -45,13 +45,16 @@ class MainScreenCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('titleSvo', 'Поле1')
-            ->setColumns(8);
+        yield TextField::new('titleSvo', 'Название кнопки 1')
+            ->setColumns(8)
+            ->setRequired(true);
 
-        yield TextField::new('titleHeroes', 'Поле2')
-            ->setColumns(8);
+        yield TextField::new('titleHeroes', 'Название кнопки 2')
+            ->setColumns(8)
+            ->setRequired(true);
 
-        yield TextField::new('titleMembers', 'Поле3')
-            ->setColumns(8);
+        yield TextField::new('titleMembers', 'Название кнопки 3')
+            ->setColumns(8)
+            ->setRequired(true);
     }
 }

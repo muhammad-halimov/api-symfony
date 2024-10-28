@@ -26,7 +26,7 @@ class PhotosCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title')
+        yield TextField::new('title', 'Название')
             ->setColumns(8);
 
         yield VichImageField::new('imageFile', 'Картинка')

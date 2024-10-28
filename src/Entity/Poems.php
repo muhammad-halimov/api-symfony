@@ -2,40 +2,35 @@
 
 namespace App\Entity;
 
-//use ApiPlatform\Metadata\Get;
-//use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PoemsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-//use Symfony\Component\Serializer\Annotation\Groups;
-
-#[ORM\Entity(repositoryClass: PoemsRepository::class)]
-//#[Get(normalizationContext: ['groups' => ['poems:read']])]
-//#[GetCollection(normalizationContext: ['groups' => ['poems:read']])]
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: PoemsRepository::class)]
 class Poems
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-//    #[Groups(['poems:read'])]
+    #[Groups(['participants:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-//    #[Groups(['poems:read'])]
+    #[Groups(['participants:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-//    #[Groups(['poems:read'])]
+    #[Groups(['participants:read'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-//    #[Groups(['poems:read'])]
+    #[Groups(['participants:read'])]
     private ?string $text = null;
 
     #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'poems')]
-//    #[Groups(['poems:read'])]
+    #[Groups(['participants:read'])]
     private ?Participants $participants = null;
 
     public function getId(): ?int

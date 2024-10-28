@@ -51,6 +51,7 @@ class History
      * @var Collection<int, Photos>
      */
     #[ORM\OneToMany(targetEntity: Photos::class, mappedBy: 'history', cascade: ['persist', 'remove'])]
+    #[Groups(['history:read'])]
     private Collection $images;
 
     public function __construct()
