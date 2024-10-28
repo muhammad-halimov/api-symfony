@@ -1,0 +1,18 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        product_description_images:
+            uri_prefix: /images/product_description
+            upload_destination: '%kernel.project_dir%/public/images/product_description'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        product_description_audios:
+            uri_prefix: /audios/product_description
+            upload_destination: '%kernel.project_dir%/public/audios/product_description'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        product_description_videos:
+            uri_prefix: /videos/product_description
+            upload_destination: '%kernel.project_dir%/public/videos/product_description'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
