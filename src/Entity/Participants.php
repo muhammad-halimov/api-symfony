@@ -176,7 +176,7 @@ class Participants
         return $this;
     }
 
-    public function getBirth(): ?DateTimeInterface
+    public function getBirth(): ?Date
     {
         return $this->birth;
     }
@@ -188,7 +188,7 @@ class Participants
         return $this;
     }
 
-    public function getDeath(): ?DateTimeInterface
+    public function getDeath(): ?Date
     {
         return $this->death;
     }
